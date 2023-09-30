@@ -12,9 +12,16 @@
     <script>
       fetch("https://ci-swapi.herokuapp.com/api/")
         .then((response) => response.json())
-        .then((data) => {
-          document.getElementById("content").innerText = data.people;
+        .then((data) => displayData(data))
+        .catch((e) => {
+          console.error("Error: ", e); //error instead of log for errors and warnings
         });
+      // When using fetch and creating the promise, we need to have a catch in place
+      // in case the prmoise is not fulfilled.
+
+      function displayData(data) {
+        document.getElementById("content").innerText = data.people;
+      }
     </script>
   </body>
 </html>
